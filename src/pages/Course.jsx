@@ -10,7 +10,7 @@ import {
 import axios from "axios";
 import YouTube from "react-youtube";
 import Modal from "@mui/material/Modal";
-import { BACKEND_URL } from "../constants/api";
+import { BACKEND_URL, PORT } from "../constants/api";
 
 function Course() {
   let { courseId } = useParams();
@@ -29,7 +29,7 @@ function Course() {
     function callback1(res) {
       res.json().then(callback2);
     }
-    fetch(`${BACKEND_URL}:3000/role/me`, {
+    fetch(`${BACKEND_URL}:${PORT}/role/me`, {
       method: "GET",
       headers: {
         Authorization: localStorage.getItem("token"),
@@ -47,7 +47,7 @@ function Course() {
   }
 
   useEffect(() => {
-    fetch(`${BACKEND_URL}:3000/admin/courses/${courseId}`, {
+    fetch(`${BACKEND_URL}:${PORT}/admin/courses/${courseId}`, {
       method: "GET",
       headers: {
         Authorization: localStorage.getItem("token"),
@@ -154,7 +154,7 @@ function EditCourseCard(props) {
             onClick={() => {
               axios({
                 method: "put",
-                url: `${BACKEND_URL}:3000/admin/courses/${courseId}`,
+                url: `${BACKEND_URL}:${PORT}/admin/courses/${courseId}`,
                 headers: {
                   "Content-Type": "application/json",
                   Authorization: localStorage.getItem("token"),
@@ -188,7 +188,7 @@ function CourseCard(props) {
   useEffect(() => {
     // Fetch the purchase status of the course on component mount
     fetch(
-      `${BACKEND_URL}:3000/users/courses/${course.course._id}/check-purchase`,
+      `${BACKEND_URL}:${PORT}/users/courses/${course.course._id}/check-purchase`,
       {
         method: "GET",
         headers: {
@@ -206,7 +206,7 @@ function CourseCard(props) {
   }, []);
 
   const handlePurchase = () => {
-    fetch(`${BACKEND_URL}:3000/users/courses/${props.course.course._id}`, {
+    fetch(`${BACKEND_URL}:${PORT}/users/courses/${props.course.course._id}`, {
       method: "POST",
       headers: {
         Authorization: localStorage.getItem("token"),
@@ -321,7 +321,7 @@ function Lessons(props) {
     res.json().then(getLessonCallback2);
   }
   const getLessons = () => {
-    fetch(`${BACKEND_URL}:3000/admin/courses/${props.course.course._id}`, {
+    fetch(`${BACKEND_URL}:${PORT}/admin/courses/${props.course.course._id}`, {
       method: "get",
       headers: {
         Authorization: localStorage.getItem("token"),
@@ -370,7 +370,7 @@ function Lessons(props) {
                 function callback1(res) {
                   res.json().then(callback2);
                 }
-                fetch(`${BACKEND_URL}:3000/admin/lessons/${lesson._id}`, {
+                fetch(`${BACKEND_URL}:${PORT}/admin/lessons/${lesson._id}`, {
                   method: "DELETE",
                   headers: {
                     Authorization: localStorage.getItem("token"),
@@ -474,7 +474,7 @@ function AddLessonCard(props) {
   const handleAddLesson = () => {
     axios({
       method: "post",
-      url: `${BACKEND_URL}:3000/admin/courses/${props.course.course._id}`,
+      url: `${BACKEND_URL}:${PORT}/admin/courses/${props.course.course._id}`,
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
@@ -582,7 +582,7 @@ function CourseLessons(props) {
     async function fetchCompletedLessons() {
       try {
         const response = await axios.get(
-          `${BACKEND_URL}:3000/users/courses/${course._id}`,
+          `${BACKEND_URL}:${PORT}/users/courses/${course._id}`,
           {
             headers: {
               Authorization: localStorage.getItem("token"),
@@ -647,7 +647,7 @@ function CourseLessons(props) {
             onClick={async () => {
               try {
                 await axios.put(
-                  `${BACKEND_URL}:3000/users/courses/${course._id}/${selectedLesson._id}`,
+                  `${BACKEND_URL}:${PORT}/users/courses/${course._id}/${selectedLesson._id}`,
                   {},
                   {
                     headers: {

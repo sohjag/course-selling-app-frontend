@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-import { BACKEND_URL } from "../constants/api";
+import { BACKEND_URL, PORT } from "../constants/api";
 
 import logoImage from "../assets/Vitejs-logo.svg.png";
 
@@ -51,7 +51,7 @@ function Appbar() {
     function callback1(res) {
       res.json().then(callback2);
     }
-    fetch(`${BACKEND_URL}:3000/role/me`, {
+    fetch(`${BACKEND_URL}:${PORT}/role/me`, {
       method: "GET",
       headers: {
         Authorization: localStorage.getItem("token"),

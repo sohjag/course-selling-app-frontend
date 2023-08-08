@@ -5,7 +5,7 @@ import TextField from "@mui/material/TextField";
 import Card from "@mui/material/Card";
 import { Typography } from "@mui/material";
 import axios from "axios";
-import { BACKEND_URL } from "../constants/api";
+import { BACKEND_URL, PORT } from "../constants/api";
 
 function Signup() {
   const [username, setUsername] = useState("");
@@ -55,7 +55,7 @@ function Signup() {
             onClick={() => {
               axios({
                 method: "post",
-                url: `${BACKEND_URL}:3000/users/signup`,
+                url: `${BACKEND_URL}:${PORT}/users/signup`,
                 headers: { "Content-Type": "application/json" },
                 data: { username, password },
               })

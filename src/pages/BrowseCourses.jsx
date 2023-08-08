@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import { Typography, Button, Box, backdropClasses } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { BACKEND_URL } from "../constants/api";
+import { BACKEND_URL, PORT } from "../constants/api";
 
 function BrowseCourses() {
   const [courses, setCourses] = useState(null);
@@ -18,7 +18,7 @@ function BrowseCourses() {
     function callback1(res) {
       res.json().then(callback2);
     }
-    fetch(`${BACKEND_URL}:3000/role/me`, {
+    fetch(`${BACKEND_URL}:${PORT}/role/me`, {
       method: "GET",
       headers: {
         Authorization: localStorage.getItem("token"),
@@ -34,7 +34,7 @@ function BrowseCourses() {
     function callback1(res) {
       res.json().then(callback2);
     }
-    fetch(`${BACKEND_URL}:3000/browsecourses`, {
+    fetch(`${BACKEND_URL}:${PORT}/browsecourses`, {
       method: "GET",
       headers: {
         Authorization: localStorage.getItem("token"),
@@ -69,7 +69,7 @@ function RenderCourse(props) {
 
   useEffect(() => {
     // Fetch the purchase status of the course on component mount
-    fetch(`${BACKEND_URL}:3000/users/courses/${course._id}/check-purchase`, {
+    fetch(`${BACKEND_URL}:${PORT}/users/courses/${course._id}/check-purchase`, {
       method: "GET",
       headers: {
         Authorization: localStorage.getItem("token"),
@@ -85,7 +85,7 @@ function RenderCourse(props) {
   }, [course._id]);
 
   const handlePurchaseCourse = () => {
-    fetch(`${BACKEND_URL}:3000/users/courses/${props.course._id}`, {
+    fetch(`${BACKEND_URL}:${PORT}/users/courses/${props.course._id}`, {
       method: "POST",
       headers: {
         Authorization: localStorage.getItem("token"),
@@ -177,12 +177,15 @@ function RenderCourse(props) {
                 function callback1(res) {
                   res.json().then(callback2);
                 }
-                fetch(`${BACKEND_URL}:3000/admin/courses/${props.course._id}`, {
-                  method: "DELETE",
-                  headers: {
-                    Authorization: localStorage.getItem("token"),
-                  },
-                }).then(callback1);
+                fetch(
+                  `${BACKEND_URL}:${PORT}/admin/courses/${props.course._id}`,
+                  {
+                    method: "DELETE",
+                    headers: {
+                      Authorization: localStorage.getItem("token"),
+                    },
+                  }
+                ).then(callback1);
               }}
             >
               Delete

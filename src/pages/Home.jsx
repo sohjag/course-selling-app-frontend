@@ -3,7 +3,7 @@ import { Box, Typography, Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { BACKEND_URL } from "../constants/api";
+import { BACKEND_URL, PORT } from "../constants/api";
 
 const HeroSection = styled(Box)(({ theme }) => ({
   background: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${"https://www.hdwallpapers.in/download/horses_are_running_on_hills_with_background_of_clouds_and_sunbeam_hd_horse-1920x1080.jpg"}) center/cover`,
@@ -217,7 +217,7 @@ function Home() {
   }
 
   useEffect(() => {
-    fetch(`${BACKEND_URL}:3000/role/me`, {
+    fetch(`${BACKEND_URL}:${PORT}/role/me`, {
       method: "GET",
       headers: {
         Authorization: localStorage.getItem("token"),

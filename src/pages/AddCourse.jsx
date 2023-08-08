@@ -1,7 +1,7 @@
 import { Button, Card, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
-import { BACKEND_URL } from "../constants/api";
+import { BACKEND_URL, PORT } from "../constants/api";
 
 function AddCourse() {
   const [title, setTitle] = useState("");
@@ -64,7 +64,7 @@ function AddCourse() {
             onClick={() => {
               axios({
                 method: "post",
-                url: `${BACKEND_URL}:3000/admin/courses`,
+                url: `${BACKEND_URL}:${PORT}/admin/courses`,
                 headers: {
                   "Content-Type": "application/json",
                   Authorization: localStorage.getItem("token"),
