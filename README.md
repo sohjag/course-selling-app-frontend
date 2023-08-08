@@ -29,7 +29,7 @@ This is a full stack course selling web application built using MERN stack. The 
 
 ## Try it out!
 
-To navigate to admin login/signup, go to ${website-address}/adminlogin or ${website-address}/adminsignup
+Main web-app deployed at https://course-selling-app-frontend.vercel.app/ .To navigate to admin login/signup, go to ${website-address}/adminlogin or ${website-address}/adminsignup
 
 - Admin account:
   username: test@email.com
