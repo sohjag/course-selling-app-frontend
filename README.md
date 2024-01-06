@@ -2,7 +2,7 @@
 
 ### Description
 
-This is a full stack course selling web application built using MERN stack. The main goal was to approach this project with a product engineering mindset taking a product 0 to 1. Please expect messy code. This is just my first attempt at MERN stack. It will only get better.
+An open source course selling web application built using MERN stack.
 
 ## Features
 
